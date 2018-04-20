@@ -17,17 +17,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from share.settings import MEDIA_ROOT
-#from django.contrib import admin
 import xadmin
-#from things.views_base import EquipmentsListView
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
-from things.views import EquipmentsViewSet,SoftwaresViewSet,TechnologiesViewSet
-from thing_types.views import TechnologyTypesView,SoftwareTypesView,EquipmentTypesView
-from users.views import UsersViewSet,VerifyCodesViewSet
-from operations.views import EquipmentIssuesViewSet,EquipmentCollectionsViewSet,SoftwareCollectionsViewSet,SoftwareIssuesViewSet,TechnologyCollectionsViewSet,TechnologyIssuesViewSet,DemandsViewSet
+from things.views import EquipmentsViewSet, SoftwaresViewSet, TechnologiesViewSet
+from thing_types.views import TechnologyTypesView, SoftwareTypesView, EquipmentTypesView
+from users.views import UsersViewSet, VerifyCodesViewSet
+from operations.views import EquipmentIssuesViewSet, EquipmentCollectionsViewSet, SoftwareCollectionsViewSet, \
+    SoftwareIssuesViewSet, TechnologyCollectionsViewSet, TechnologyIssuesViewSet, DemandsViewSet
 from django.views.static import serve
-from orders.views import EquipmentOrdersViewSet,TechnologyOrdersViewSet,SoftwareOrdersViewSet
+from orders.views import EquipmentOrdersViewSet, TechnologyOrdersViewSet, SoftwareOrdersViewSet
 
 router = DefaultRouter()
 
@@ -36,16 +35,16 @@ router.register(r'softwares', SoftwaresViewSet)
 router.register(r'technologies', TechnologiesViewSet)
 router.register(r'equipment_issue', EquipmentIssuesViewSet)
 router.register(r'equipment_collection', EquipmentCollectionsViewSet)
-router.register(r'software_issue',SoftwareIssuesViewSet)
-router.register(r'software_collection',SoftwareCollectionsViewSet)
-router.register(r'technology_issue',TechnologyIssuesViewSet)
-router.register(r'technology_collection',TechnologyCollectionsViewSet)
-router.register(r'demand',DemandsViewSet)
-router.register(r'users',UsersViewSet)
-router.register(r'verifyCodes',VerifyCodesViewSet)
-router.register(r'equipment_orders',EquipmentOrdersViewSet)
-router.register(r'software_orders',SoftwareOrdersViewSet)
-router.register(r'technology_orders',TechnologyOrdersViewSet)
+router.register(r'software_issue', SoftwareIssuesViewSet)
+router.register(r'software_collection', SoftwareCollectionsViewSet)
+router.register(r'technology_issue', TechnologyIssuesViewSet)
+router.register(r'technology_collection', TechnologyCollectionsViewSet)
+router.register(r'demand', DemandsViewSet)
+router.register(r'users', UsersViewSet)
+router.register(r'verifyCodes', VerifyCodesViewSet)
+router.register(r'equipment_orders', EquipmentOrdersViewSet)
+router.register(r'software_orders', SoftwareOrdersViewSet)
+router.register(r'technology_orders', TechnologyOrdersViewSet)
 router.register(r'technology_types', TechnologyTypesView)
 router.register(r'software_types', SoftwareTypesView)
 router.register(r'equipment_types', EquipmentTypesView)
@@ -54,10 +53,10 @@ urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
-    url(r'^',include(router.urls)),
+    url(r'^', include(router.urls)),
 
-    url(r'docs/',include_docs_urls(title='地质设备共享')),
+    url(r'docs/', include_docs_urls(title='地质设备共享')),
 
-    url(r'^api-auth/',include('rest_framework.urls',namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 ]

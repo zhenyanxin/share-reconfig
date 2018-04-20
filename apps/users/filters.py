@@ -1,15 +1,26 @@
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 
 import django_filters
-from .models import Equipment
+from .models import User, VerifyCode
+
 
 class UserFilter(django_filters.rest_framework.FilterSet):
     """
-
+    用户过滤器
     """
-    name=django_filters.CharFilter("name",lookup_expr="icontaint")
-    phone=django_filters.CharFilter("phone")
+    phone = django_filters.CharFilter("phone")
 
     class Meta:
-        model = Equipment
-        fields = ["name","phone"]
+        model = User
+        fields = ["phone"]
+
+
+class VerifyCodeFilter(django_filters.rest_framework.FilterSet):
+    """
+    用户过滤器
+    """
+    mobile = django_filters.CharFilter("mobile")
+
+    class Meta:
+        model = VerifyCode
+        fields = ["mobile"]
