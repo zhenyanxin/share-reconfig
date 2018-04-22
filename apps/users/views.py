@@ -44,7 +44,7 @@ class VerifyCodePagination(PageNumberPagination):
     max_page_size = 100
 
 
-class VerifyCodesViewSet(mixins.ListModelMixin, viewsets.GenericViewSet, generics.CreateAPIView,generics.UpdateAPIView):
+class VerifyCodesViewSet(mixins.ListModelMixin, viewsets.GenericViewSet, generics.CreateAPIView,generics.UpdateAPIView,generics.RetrieveAPIView):
     """
     验证码记录列表
     """

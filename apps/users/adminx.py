@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import xadmin
-from .models import User,VerifyCode
+from .models import User, VerifyCode
 from xadmin import views
 
 
@@ -22,14 +22,14 @@ class UserAdmin(object):
     list_filter = ['id', 'nick_name', 'phone']
 
 
-
 class VerifyCodeAdmin(object):
     list_display = ['code', 'mobile', 'add_time']
     # search_fields = ['code', 'mobile']
     list_filter = ['code', 'mobile', 'add_time']
 
 
+xadmin.site.unregister(User)
 xadmin.site.register(User, UserAdmin)
-xadmin.site.register(views.BaseAdminView, BaseSetting)   # 注册主题
+xadmin.site.register(views.BaseAdminView, BaseSetting)  # 注册主题
 xadmin.site.register(views.CommAdminView, GlobalSettings)  # 注册全局
 xadmin.site.register(VerifyCode, VerifyCodeAdmin)

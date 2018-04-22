@@ -4,7 +4,7 @@ from datetime import datetime
 
 from django.db import models
 
-# from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser
 
 BANK = (("中国工商银行", "中国工商银行"), ("中国农业银行", "中国农业银行"),
         ("中国建设银行", "中国建设银行"), ("中国银行", "中国银行"),
@@ -19,10 +19,10 @@ EDUCATION = (("初中", "初中"), ("高中", "高中"),
              )
 
 
-class User(models.Model):
+class User(AbstractUser):
     id = models.AutoField(primary_key=True, verbose_name=u"用户ID")
     nick_name = models.CharField(max_length=20, default="", null=False, blank=False, verbose_name=u"昵称")
-    password = models.CharField(max_length=20, default="", null=False, blank=False, verbose_name=u"密码")
+    password = models.CharField(max_length=20, null=False, blank=False, verbose_name=u"密码")
     phone = models.CharField(max_length=11, null=False, blank=False, verbose_name=u"手机号", unique=True)
     complete = models.BooleanField(default=False, verbose_name=u"是否完善信息是否完善")
     # Complete
@@ -54,7 +54,7 @@ class VerifyCode(models.Model):
     短信验证码
     """
     code = models.CharField(max_length=10, verbose_name="验证码")
-    mobile = models.CharField(max_length=11, verbose_name="电话")
+    mobile = models.CharField(max_length=11,unique=True, verbose_name="电话")
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
 
     class Meta:
